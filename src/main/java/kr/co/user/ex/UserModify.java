@@ -6,6 +6,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import kr.co.user.model.MemberDAO;
 import kr.co.user.model.MemberDTO;
 
@@ -57,6 +58,8 @@ public class UserModify extends HttpServlet {
 			} else {
 				int result = dt.UserModifyOk(id, name,email,roletype,statetype);
 				if (result > 0) {
+					HttpSession session = request.getSession(true);
+					session.setAttribute("result",Integer.toString(result));
 					RequestDispatcher dispatcher = request
 							.getRequestDispatcher("modifyResult.jsp");
 					dispatcher.forward(request, response);

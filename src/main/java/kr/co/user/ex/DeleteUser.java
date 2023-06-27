@@ -56,7 +56,7 @@ public class DeleteUser extends HttpServlet {
 			} else {
 				int result = dt.deleteUser(id);
 				if (result > 0) {
-					RequestDispatcher dispatcher = request.getRequestDispatcher("manage.jsp");
+					RequestDispatcher dispatcher = request.getRequestDispatcher("manage.jsp?result="+result);
 					dispatcher.forward(request, response);
 					return;
 

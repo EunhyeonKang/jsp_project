@@ -49,6 +49,7 @@ public class ModifyOk extends HttpServlet {
 		String pw = request.getParameter("pw");
 		String phone = request.getParameter("phone");
 		String name = request.getParameter("name");
+		String email = request.getParameter("email");
 		PrintWriter out = response.getWriter();
 		try {
 			MemberDAO dt = new MemberDAO();
@@ -56,7 +57,7 @@ public class ModifyOk extends HttpServlet {
 			if (idCheck == null) {
 				out.println("<h2>조회실패</h2>");
 			} else {
-				int result = dt.ModifyOk(id, pw, name,phone);
+				int result = dt.ModifyOk(id, pw, name,phone,email);
 				if (result > 0) {
 					RequestDispatcher dispatcher = request
 							.getRequestDispatcher("modifyResult.jsp");
@@ -64,7 +65,7 @@ public class ModifyOk extends HttpServlet {
 					return;
 
 				} else {
-					RequestDispatcher dispatcher = request.getRequestDispatcher("Modify.jsp?result=" + result);
+					RequestDispatcher dispatcher = request.getRequestDispatcher("modify.jsp");
 					dispatcher.forward(request, response);
 					return;
 				}

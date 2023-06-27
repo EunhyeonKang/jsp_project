@@ -10,7 +10,7 @@
         // JavaScript 코드에서 파라미터 값을 받아와서 alert 창을 띄움
         var id = '<%= (String)session.getAttribute("id") %>';
         
-        var message = id+ "님 삭제 성공!";
+        var message = id+ "탈퇴 성공!";
         alert(message);
         <%
 		session.invalidate();

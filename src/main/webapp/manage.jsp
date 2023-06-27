@@ -65,6 +65,7 @@ body{
 <%
 		MemberDAO md = new MemberDAO();
 		ArrayList<MemberDTO> list = md.selectMember();
+		String result = request.getParameter("result");
 %>
 <body>
 	<h2>회원관리</h2><div class="table-container">
@@ -84,15 +85,44 @@ body{
         <td><%= member.getId() %></td>
         <td><%= member.getPw() %></td>
         <td><%= member.getName() %></td>
-        <td><%= member.getPhone() %></td>
+        <td><%= maskPhoneNumber(member.getPhone()) %></td>
         <td><%= member.getRoletype() %></td>
         <td><%= member.getStatetype() %></td>
         <td><a href="userModify.jsp?id=<%= member.getId() %>" class="view-button">수정</a></td>
       </tr>
     <% } %>
-    
+    <%!
+    public String maskPhoneNumber(String phoneNumber) {
+        if (phoneNumber == null || phoneNumber.isEmpty()) {
+            return phoneNumber;
+        }
+        if (phoneNumber.startsWith("010") && phoneNumber.length() >= 10) {
+            String front = phoneNumber.substring(0, 4);
+            String masked = phoneNumber.substring(4).replaceAll("\\d", "*");
+            return front + masked;
+        } else {
+            return phoneNumber;
+        }
+    }
+
+    %>
   </table>
   <br/><a href="main.jsp">메인페이지로 이동</a>
 </div>
 </body>
+<script>
+//JavaScript 코드에서 파라미터 값을 받아와서 alert 창을 띄움
+if(<%=result%>>0){
+	alert("삭제 성공!");
+}
+var passwordElements = document.querySelectorAll("td:nth-child(2)");
+passwordElements.forEach(function(element) {
+  var password = element.textContent.trim();
+  var maskedPassword = "";
+  for (var i = 0; i < password.length; i++) {
+    maskedPassword += "*";
+  }
+  element.textContent = maskedPassword;
+});
+</script>
 </html>

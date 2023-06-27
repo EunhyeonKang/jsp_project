@@ -128,7 +128,7 @@
              <br/>
             <div class="flexSignup">
                  <span class="idbox">패스워드</span>
-                 <input type="password" name="pw" class="pw" id="rec6" placeholder="패스워드를 입력해주세요" onclick="validatePassword()"/>                     
+                 <input type="password" name="pw" class="pw" id="rec6" placeholder="패스워드를 입력해주세요"/>                     
              </div>
              <br/>
              <div class="flexSignup">
@@ -146,14 +146,7 @@
                  <input type="email" name="email" class="email" id="rec6" placeholder="이메일을 입력해주세요"/>                     
              </div>
              <br/>
-           
-             <br/>
-             <div class="flexSignup">
-                 <span class="idbox">권한</span>
-                사용자 : <input type="radio" name="roletype" value="user" class="gradio" id="gradio">
-				관리자 : <input type="radio" name="roletype" value="admin" class="gradio" id="gradio"><br/>
-             </div>
-             <br/>
+             <input type="hidden" name="roletype" value="user" class="gradio" id="gradio">
 			<button id="join2">
                     <span>회원가입하기</span>
             </button>

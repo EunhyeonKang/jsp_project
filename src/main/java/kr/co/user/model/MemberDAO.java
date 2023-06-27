@@ -134,9 +134,9 @@ public class MemberDAO {
 		return list;
 	}
 
-	public int ModifyOk(String id, String pw, String name, String phone) {
+	public int ModifyOk(String id, String pw, String name,String phone, String email) {
 		// SQL 쿼리 작성
-		String sql = "UPDATE users SET pw=?, phone=?, name=? WHERE id=?";
+		String sql = "UPDATE users SET pw=?, name=?,phone=?, email=? WHERE id=?";
 		int result = 0;
 		// PreparedStatement 생성
 		try {
@@ -147,7 +147,8 @@ public class MemberDAO {
 			pstmt.setString(1, pw); // pw 변수로 설정
 			pstmt.setString(2, name); // phone 변수로 설정
 			pstmt.setString(3, phone);
-			pstmt.setString(4, id);
+			pstmt.setString(4, email);
+			pstmt.setString(5, id);
 			// SQL 쿼리 실행
 			result = pstmt.executeUpdate();
 
